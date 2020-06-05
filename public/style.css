@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap');
+
+@media only screen and (max-width: 575px) {
+    .btn{
+        margin-left: 35%;
+    }
+}
+.currentWeather{
+    width: 100%;
+}
+body {
+    overflow-x: hidden;
+}
+.imgWeatherMaster{
+    width: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.infoWeather{
+    margin-top: 3%;
+    text-align: center;
+}
+
+.navbar-nav {
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+
+.navbar-nav > li {
+    display: inline-block;
+    float:none;
+}
+
+.infoWeather h1{
+    color: #17a2b8;
+}
+.infoWeather h2{
+    font-size: 1em;
+}
+
+.navbar-brand{
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    font-size: 2em;
+    color: #343434 !important;
+}
+
+.div-weather{
+    margin-top: 3%;
+}
+
+.sub-div-weather{
+    margin-left: 6.5%;
+    border: 1px solid #17a2b8;
+}
+
+.sub-div-weather h1{
+    text-align: center;
+    color: #17a2b8;
+}
+
+.sub-div-weather h2{
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    margin-top: 5%;
+    text-align: center;
+    color: #343434;
+    font-size: 1.5em;
+}
+
+.sub-div-weather h3{
+    color: #343434;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.imgWeather{
+    width: 75%;
+    float:none;
+    margin:7% auto;
+    display: block;
+    text-align: center;
+}
+
+.about{
+    margin-top: 30%;
+    text-align: center;
+}
+
+.about h1{
+    color: #17a2b8;
+    font-size: 2em;
+}
+
+.about h2{
+    font-size: 1.2em;
+}
+
+.about h3{
+    font-size: 1em;
+}
