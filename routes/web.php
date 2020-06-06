@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+//Route::get('/clima', function () {
+//    return view('weather');
+//})->name('weather');
+
 Route::get('/sobre', function () {
     return view('about');
 })->name('about');
+
+Route::get('/clima/{city}', 'APIController');
+
+Route::post('/clima', 'SearchController@metodo')->name("clima");
