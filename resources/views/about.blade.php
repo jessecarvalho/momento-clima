@@ -1,20 +1,15 @@
 @extends('master.layout')
 @section('content')
-
-    <div class="container">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <div class="about">
-                    <h1>MOMENTO CLIMA</h1>
-                    <h2>Mantenha seu céu sempre atualizado!</h2>
-                    <hr>
-                    <h3>Momento clima é um website com objetivos acadêmicos desenvolvido por Jessé Carvalho,
-qualquer duvida entre em contato no email: jesseelias80@gmail.com</h3>
-                </div>
-            </div>
-            <div class="col-2"></div>
-        </div>
+    <div id="info_abt">
+        <h1>About us</h1>
+        <h2>Momento clima é um site que oferece previsão de tempo a partir do uso um extenso banco de dados,
+            com mais de 200 mil cidades pelo mundo oferecidas por <a href="https://openweathermap.org/">Open Weather Map</a>
+            com uma cobertura confiável e de qualidade.
+            <br> <br>
+        Desenvolvedor: Jessé Carvalho (jesseelias80@gmail.com).<br>
+        Icons cedidos gratuitamente por: <a href="https://www.flaticon.com/authors/freepik">Freepik</a><br>
+        API de autoria de <a href="https://openweathermap.org/">Open Weather Map</a>.
+        </h2>
+        <img src="http://localhost/Momento-Clima/public/img/01d.png" id="abt_logo">
     </div>
-
 @endsection

@@ -27,4 +27,6 @@ Route::get('/sobre', function () {
 
 Route::get('/clima/{city}', 'APIController');
 
-Route::post('/clima', 'SearchController@metodo')->name("clima");
+Route::post('/clima', 'SearchController@searchByCity')->name("city");
+
+route::post('/climaZip', 'SearchController@searchByZip')->name("zip");

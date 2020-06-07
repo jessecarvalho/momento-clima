@@ -1,7 +1,6 @@
 @extends('master.layout')
 @section('content')
-
-    <img src="http://localhost/Momento-Clima/public/img/01d.png" id="logo">
+    <img src="http://localhost/Momento-Clima/public/img/wrong.png" id="logo">
     <div id="switchSearch">
         <button type="button" class="btn btn-primary" onclick="changeCity()" id="cityButton">cidade</button>
         <button type="button" class="btn btn-outline-primary" onclick="changeZip()" id="zipButton">cep</button>
@@ -23,7 +22,7 @@
         </form>
     </div>
 
-    <div id="info">
-        <h1>Para começar digite o nome da cidade desejada no mecanismo de busca acima.</h1>
+    <div id="info-wrong">
+        <h1>Ooops, cidade não encontrada, verifique se escreveu corretamente!</h1>
     </div>
 @endsection

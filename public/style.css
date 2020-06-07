@@ -1,45 +1,207 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellota:wght@300&display=swap');
+
+/*
+**
+DARK MODE
+**
+ */
+[data-theme="dark"] {
+    background-color: #343434 !important;
+}
+
+[data-theme="dark"] h1{
+    color: white !important;
+}
+
+[data-theme="dark"] .navbar{
+    background-color: #333333!important;
+}
+
+[data-theme="dark"] #textoNavbar a{
+    color: white !important;
+}
+
+[data-theme="dark"] .custom-switch {
+    color: white !important;
+}
+
+[data-theme="dark"] #info h1 {
+    color: white !important;
+}
+
+[data-theme="dark"] #info h2{
+    color: white !important;
+}
+
+[data-theme="dark"] #info_abt h1 {
+    color: white !important;
+}
+
+[data-theme="dark"] #info_abt h2{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h1{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h2{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h3{
+    color: white !important;
+}
+
+[data-theme="dark"] .infoWeather{
+    color: white !important;
+}
+
+[data-theme="dark"] #switchSearch h2{
+    color: red !important;
+}
+/*
+**
+RESPONSIVE LAYOUT
+**
+ */
+
 @media only screen and (max-width: 575px) {
     .btn{
         margin-left: 35%;
     }
+
+    .sub-div-weather h1{
+        text-align: center;
+        color: #17a2b8;
+        font-size: 1.2em !important;
+    }
+
+    .sub-div-weather h2{
+        margin-top: 5%;
+        text-align: center;
+        color: #343434;
+        font-size: 1em !important;
+    }
+
+    .sub-div-weather h3{
+        color: #343434;
+        text-align: center;
+        font-size: 0.8em !important;
+    }
+    body {
+        margin-bottom: 5%;
+    }
 }
-.currentWeather{
-    width: 100%;
+@media only screen and (max-width: 768px) {
+    .navbar-nav > li {
+        display: block !important;
+    }
+    .navbar-brand{
+        display: none;
+    }
 }
+
+/*Body*/
 body {
     overflow-x: hidden;
-    font-family: 'Bellota', cursive;
+    font-family: 'Bellota', cursive !important;
 }
-.imgWeatherMaster{
-    width: 25%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-.search{
+
+/*
+** SHARED LAYOUT
+ */
+/*Search bar*/
+#search{
     display: flex;
     align-items: center;
     justify-content: center
 }
 
-.infoWeather{
-    margin-top: 3%;
-    text-align: center;
+#city{
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 
-.navbar-nav {
+#zip{
+    display: none;
+    align-items: center;
+    justify-content: center
+}
+
+/*Brand*/
+.navbar-brand{
+    font-size: 2em;
+    color: #343434 !important;
+}
+
+/*Dark Mode Button*/
+.custom-switch {
     float:none;
     margin:0 auto;
     display: block;
     text-align: center;
 }
 
+/*Navbar*/
+.navbar-nav {
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+/*Centralizing navbar*/
 .navbar-nav > li {
     display: inline-block;
     float:none;
 }
 
+/*
+** WELCOME
+*/
+
+#logo{
+    float:none;
+    margin: 6% auto 2% auto;
+    display: block;
+    text-align: center;
+    width: 15%;
+}
+#info h1{
+    margin-top: 1%;
+    text-align: center;
+    font-size: 1.2em;
+    color: #343434;
+}
+#switchSearch {
+    float:none;
+    display: block;
+    text-align: center;
+    margin-bottom: 1%;
+}
+#switchSearch h2{
+    font-size: 1em;
+    color: #c70707;
+}
+
+/*
+** FORECAST
+*/
+
+/*The today weather icon*/
+.imgWeatherMaster{
+    width: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Detailed info's about the today weather*/
+.infoWeather{
+    margin-top: 3%;
+    text-align: center;
+}
 .infoWeather h1{
     color: #17a2b8;
 }
@@ -47,38 +209,29 @@ body {
     font-size: 1em;
 }
 
-.navbar-brand{
-    font-size: 2em;
-    color: #343434 !important;
-}
-
+/*Next days Forecast*/
 .div-weather{
     margin-top: 3%;
 }
-
 .sub-div-weather{
     margin-left: 6.5%;
     border: 1px solid #17a2b8;
 }
-
 .sub-div-weather h1{
     text-align: center;
     color: #17a2b8;
 }
-
 .sub-div-weather h2{
     margin-top: 5%;
     text-align: center;
     color: #343434;
     font-size: 1.5em;
 }
-
 .sub-div-weather h3{
     color: #343434;
     text-align: center;
     font-size: 1.1em;
 }
-
 .imgWeather{
     width: 75%;
     float:none;
@@ -87,35 +240,62 @@ body {
     text-align: center;
 }
 
+/*
+** About page
+ */
+
 .about{
     margin-top: 30%;
     text-align: center;
 }
-
 .about h1{
     color: #17a2b8;
     font-size: 2em;
 }
-
 .about h2{
     font-size: 1.2em;
 }
-
 .about h3{
     font-size: 1em;
 }
-
-#logo{
+#abt_logo{
     float:none;
-    margin: 8% auto 2% auto;
+    margin: 6% auto 2% auto;
     display: block;
     text-align: center;
-    width: 25%;
+    width: 10%;
+}
+#info_abt h1{
+    margin-top: 2%;
+    text-align: center;
+    font-size: 1.8em;
+}
+#info_abt h2{
+    margin: 0 25% 0 25%;
+    margin-top: 5%;
+    font-size: 1.5em;
 }
 
-#info h1{
-    margin-top: 5%;
+/*
+** WRONG
+ */
+
+#info-wrong h1{
+    margin-top: 2%;
     text-align: center;
     font-size: 1.5em;
-    color: #343434;
+    color: red !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
