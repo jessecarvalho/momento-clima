@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "stichoza/google-translate-php" : "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

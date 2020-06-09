@@ -1,107 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellota:wght@300&display=swap');
 
-/*
-**
-DARK MODE
-**
- */
-[data-theme="dark"] {
-    background-color: #343434 !important;
-}
-
-[data-theme="dark"] h1{
-    color: white !important;
-}
-
-[data-theme="dark"] .navbar{
-    background-color: #333333!important;
-}
-
-[data-theme="dark"] #textoNavbar a{
-    color: white !important;
-}
-
-[data-theme="dark"] .custom-switch {
-    color: white !important;
-}
-
-[data-theme="dark"] #info h1 {
-    color: white !important;
-}
-
-[data-theme="dark"] #info h2{
-    color: white !important;
-}
-
-[data-theme="dark"] #info_abt h1 {
-    color: white !important;
-}
-
-[data-theme="dark"] #info_abt h2{
-    color: white !important;
-}
-
-[data-theme="dark"] .sub-div-weather h1{
-    color: white !important;
-}
-
-[data-theme="dark"] .sub-div-weather h2{
-    color: white !important;
-}
-
-[data-theme="dark"] .sub-div-weather h3{
-    color: white !important;
-}
-
-[data-theme="dark"] .infoWeather{
-    color: white !important;
-}
-
-[data-theme="dark"] #switchSearch h2{
-    color: red !important;
-}
-/*
-**
-RESPONSIVE LAYOUT
-**
- */
-
-@media only screen and (max-width: 575px) {
-    .btn{
-        margin-left: 35%;
-    }
-
-    .sub-div-weather h1{
-        text-align: center;
-        color: #17a2b8;
-        font-size: 1.2em !important;
-    }
-
-    .sub-div-weather h2{
-        margin-top: 5%;
-        text-align: center;
-        color: #343434;
-        font-size: 1em !important;
-    }
-
-    .sub-div-weather h3{
-        color: #343434;
-        text-align: center;
-        font-size: 0.8em !important;
-    }
-    body {
-        margin-bottom: 5%;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .navbar-nav > li {
-        display: block !important;
-    }
-    .navbar-brand{
-        display: none;
-    }
-}
-
 /*Body*/
 body {
     overflow-x: hidden;
@@ -118,14 +16,14 @@ body {
     justify-content: center
 }
 
-#city{
-    display: flex;
+#basic{
+    display: none;
     align-items: center;
     justify-content: center
 }
 
-#zip{
-    display: none;
+#advanced{
+    display: flex;
     align-items: center;
     justify-content: center
 }
@@ -180,7 +78,9 @@ body {
     text-align: center;
     margin-bottom: 1%;
 }
+
 #switchSearch h2{
+    display: none;
     font-size: 1em;
     color: #c70707;
 }
@@ -189,16 +89,21 @@ body {
 ** FORECAST
 */
 
+.forecastMainInfo{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
 /*The today weather icon*/
 .imgWeatherMaster{
-    width: 25%;
+    float: right;
+    width: 50%;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /*Detailed info's about the today weather*/
 .infoWeather{
+    float: left;
     margin-top: 3%;
     text-align: center;
 }
@@ -276,6 +181,51 @@ body {
     font-size: 1.5em;
 }
 
+
+/*
+** SEARCH
+ */
+#search_opt{
+    margin: 5% auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.search_result{
+    padding: 0.5%;
+    margin: 1% auto 0 auto;
+    width: 50%;
+    text-align: center;
+    border: 1px solid #cfcaca;
+    color: black;
+    border-radius: 5px;
+}
+
+.search_result:hover{
+    background-color: #343434;
+    color: white;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.search_result h1{
+    font-size: 1.2em;
+}
+
+.search_result h2{
+    font-size: 1em;
+}
+
+.advice h1{
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    margin: 1% auto 3% auto;
+}
+
 /*
 ** WRONG
  */
@@ -288,10 +238,120 @@ body {
 }
 
 
+/*
+**
+DARK MODE
+**
+ */
+[data-theme="dark"] {
+    background-color: #343434 !important;
+}
 
+[data-theme="dark"] h1{
+    color: white !important;
+}
 
+[data-theme="dark"] .navbar{
+    background-color: #333333!important;
+}
 
+[data-theme="dark"] #textoNavbar a{
+    color: white !important;
+}
 
+[data-theme="dark"] .custom-switch {
+    color: white !important;
+}
+
+[data-theme="dark"] #info h1 {
+    color: white !important;
+}
+
+[data-theme="dark"] #info h2{
+    color: white !important;
+}
+
+[data-theme="dark"] #info_abt h1 {
+    color: white !important;
+}
+
+[data-theme="dark"] #info_abt h2{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h1{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h2{
+    color: white !important;
+}
+
+[data-theme="dark"] .sub-div-weather h3{
+    color: white !important;
+}
+
+[data-theme="dark"] .infoWeather{
+    color: white !important;
+}
+
+[data-theme="dark"] #switchSearch h2{
+    color: red !important;
+}
+
+[data-theme="dark"] .search_result h2{
+    color: white !important;
+}
+
+[data-theme="dark"] .search_result:hover{
+    background-color: #36383a;
+    color: blue !important;
+}
+
+/*
+**
+RESPONSIVE LAYOUT
+**
+ */
+
+@media only screen and (max-width: 575px) {
+    .btn-search{
+        margin-left: 35%;
+    }
+
+    .sub-div-weather h1{
+        text-align: center;
+        color: #17a2b8;
+        font-size: 1.2em !important;
+    }
+
+    .sub-div-weather h2{
+        margin-top: 5%;
+        text-align: center;
+        color: #343434;
+        font-size: 1em !important;
+    }
+
+    .sub-div-weather h3{
+        color: #343434;
+        text-align: center;
+        font-size: 0.8em !important;
+    }
+    body {
+        margin-bottom: 5%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .navbar-nav > li {
+        display: block !important;
+    }
+    .navbar-brand{
+        display: none;
+    }
+    #info-wrong h1, h2{
+        font-size: 1.2em;
+    }
+}
 
 
 

@@ -1,4 +1,5 @@
 @extends('master.layout')
+
 @section('content')
     <div id="info_abt">
         <h1>About us</h1>

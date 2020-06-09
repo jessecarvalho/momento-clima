@@ -25,8 +25,15 @@ Route::get('/sobre', function () {
     return view('about');
 })->name('about');
 
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
+
 Route::get('/clima/{city}', 'APIController');
 
-Route::post('/clima', 'SearchController@searchByCity')->name("city");
+Route::get('/climaID/{id}', 'SearchController@searchById')->name("searchById");
 
-route::post('/climaZip', 'SearchController@searchByZip')->name("zip");
+Route::post('/clima', 'SearchController@searchByCity')->name("basicSearch");
+
+Route::post('/climaZip', 'SearchController@advancedSearch')->name("advancedSearch");
+
