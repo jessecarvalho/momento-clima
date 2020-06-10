@@ -14,7 +14,7 @@ Momento Clima é um projeto pessoal de um website focado em trazer a previsão d
 
 ## Screenshots
 ####Light Mode
-![Screenshot](screenshots/untitled.png) 
+![Screenshot](screenshots/d.png) 
 ![Screenshot](screenshots/c.png)
 #### Dark Mode
 ![Screenshot](screenshots/a.png)
