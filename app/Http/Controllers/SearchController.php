@@ -70,8 +70,9 @@ class SearchController extends Controller
         $strJsonFileContents = file_get_contents($list);
         $array = json_decode($strJsonFileContents);
         $target = array();
+        $a = ucwords($request->search);
         for ($i = 0; $i < sizeof($array); $i++){
-            if ($array[$i]->name == ucwords($request->search)){
+            if ($array[$i]->name == iconv('UTF-8', 'ASCII//TRANSLIT', $a)){
                 if (!in_array($array[$i]->name, $target)) {
                    $target[] = $array[$i];
                 }
@@ -84,4 +85,11 @@ class SearchController extends Controller
             return view('error');
         }
     }
+    public function tirarAcentos($string){
+        $string =  preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(ç)/","/(Ç)/"),explode(" ","a A e E i I o O u U n N c C"),$string);
+        $char = array(' & ', 'ª ', '  (', ') ', '(', ')', ' - ', ' / ', ' /', '/ ', '/', ' | ', ' |', '| ', ' | ', '|', '_', '.', ' ');
+        return strtolower(str_replace($char, '-', $string));
+
+    }
+
 }
