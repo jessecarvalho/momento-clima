@@ -17,7 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="textoNavbar">
             <ul class="navbar-nav mr-auto">
-                <a class="navbar-brand" href="#">Momento Clima</a>
+                <a class="navbar-brand" href="{{route('welcome')}}">Momento Clima</a>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('welcome')}}">Home</a>
                 </li>

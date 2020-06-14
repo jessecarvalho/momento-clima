@@ -1,5 +1,6 @@
 @extends('master.layout')
 @section('content')
+
     <div class="container forecastMainInfo">
         <div class="row">
             <div class="col-2"></div>

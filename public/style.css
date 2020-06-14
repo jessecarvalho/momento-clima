@@ -58,10 +58,14 @@ body {
 /*
 ** WELCOME
 */
+.weatherHome{
+    float: none !important;
+    text-align: center !important;
+}
 
 #logo{
     float:none;
-    margin: 6% auto 2% auto;
+    margin: 1% auto 2% auto;
     display: block;
     text-align: center;
     width: 15%;
@@ -69,7 +73,7 @@ body {
 #info h1{
     margin-top: 1%;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #343434;
 }
 #switchSearch {

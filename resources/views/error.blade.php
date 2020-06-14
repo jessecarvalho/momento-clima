@@ -1,6 +1,6 @@
 @extends('master.layout')
 @section('content')
-    <img src="http://localhost/Momento-Clima/public/img/wrong.png" id="logo">
+    <img src= <?=env("WRONG_IMG")?> id="logo">
     <div id="switchSearch">
         <button type="button" class="btn btn-primary" onclick="advancedSearch()" id="zipButton">Avançada</button>
         <button type="button" class="btn btn-outline-primary" onclick="basicSearch()" id="cityButton">Rápida</button>
