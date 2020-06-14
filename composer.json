@@ -16,8 +16,7 @@
         "laravel/tinker": "^2.0",
         "ext-curl": "*",
         "ext-json": "*",
-        "torann/geoip" : "*",
-        "predis/predis" : "*"
+        "stichoza/google-translate-php" : "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -43,9 +42,6 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ],
-        "files": [
-            "app/Helpers/SystemHelper.php"
         ]
     },
     "autoload-dev": {
