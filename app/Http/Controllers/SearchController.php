@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
 
-    public function findCoords($api)
+    public function findCoords($api, $id)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -71,7 +71,7 @@ class SearchController extends Controller
             $id = $request->id;
             $apiKeyWheater = env("API_OPEN_WEATHER");
             $apiWeather = "api.openweathermap.org/data/2.5/weather?id=" . $id . "&units=metric&appid=" . $apiKeyWheater;
-            $response = $this->findCoords($apiWeather);
+            $response = $this->findCoords($apiWeather, $id);
             return view('weather', ['data' => json_decode($response[0]), 'city' => $response[1]]);
        }
         catch (\Exception $e) {
@@ -89,23 +89,36 @@ class SearchController extends Controller
 
     public function advancedSearch(Request $request)
     {
-        $list = env("JSON_LIST");
-        $strJsonFileContents = file_get_contents($list);
-        $array = json_decode($strJsonFileContents);
-        $target = array();
-        for ($i = 0; $i < sizeof($array); $i++){
-            if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords($request->search)))){
-                if (!in_array($array[$i]->name, $target)) {
-                   $target[] = $array[$i];
+    var_dump(\cache()->get("a"));
+        $city = \cache()->remember("a", 60*10, function () {
+            $apiWeather = env("JSON_LIST");
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $apiWeather);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_VERBOSE, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $array = json_decode($response);
+            $target = array();
+            for ($i = 0; $i < sizeof($array); $i++){
+                if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords("Guarulhos")))){
+                    if (!in_array($array[$i]->name, $target)) {
+                        $target[] = $array[$i];
+                    }
                 }
             }
-        }
-        if (!empty($target)){
-            return view('search', ['data' => $target]);
+            return $target;
+        });
+        if (!empty($city)){
+            return view('search', ['data' => $city]);
         }
         else{
             return view('error');
         }
+
     }
 
 }

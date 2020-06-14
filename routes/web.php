@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/clima', function () {
-//    return view('weather');
-//})->name('weather');
+Route::get('/', 'SearchController@searchByIp')->name('welcome');
 
 Route::get('/sobre', function () {
     return view('about');
@@ -24,8 +22,6 @@ Route::get('/sobre', function () {
 Route::get('/search', function () {
     return view('search');
 })->name('search');
-
-Route::get('/', 'SearchController@searchByIp')->name('welcome');
 
 Route::get('/climaID/{id}', 'SearchController@searchById')->name("searchById");
 

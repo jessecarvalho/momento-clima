@@ -1,8 +1,6 @@
 @extends('master.layout')
 
 @section('content')
-
-
     <div id="info_abt">
         <h1>About us</h1>
         <h2>Momento clima é um site que oferece previsão de tempo a partir do uso um extenso banco de dados,
