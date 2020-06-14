@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 //Route::get('/clima', function () {
 //    return view('weather');
 //})->name('weather');
@@ -29,7 +25,7 @@ Route::get('/search', function () {
     return view('search');
 })->name('search');
 
-Route::get('/clima/{city}', 'APIController');
+Route::get('/', 'SearchController@searchByIp')->name('welcome');
 
 Route::get('/climaID/{id}', 'SearchController@searchById')->name("searchById");
 
