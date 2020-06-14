@@ -1,8 +1,6 @@
 @extends('master.layout')
 
 @section('content')
-
-
     <div id="info_abt">
         <h1>About us</h1>
         <h2>Momento clima é um site que oferece previsão de tempo a partir do uso um extenso banco de dados,
@@ -13,6 +11,6 @@
         Icons cedidos gratuitamente por: <a href="https://www.flaticon.com/authors/freepik">Freepik</a><br>
         API de autoria de <a href="https://openweathermap.org/">Open Weather Map</a>.
         </h2>
-        <img src="http://localhost/Momento-Clima/public/img/01d.png" id="abt_logo">
+        <img src= <?=env("ABOUT_IMG")?> id="abt_logo">
     </div>
 @endsection

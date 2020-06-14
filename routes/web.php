@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('/', 'SearchController@searchByIp')->name('welcome');
 =======
 Route::get('/', function () {
@@ -24,6 +25,11 @@ Route::get('/', function () {
 //    return view('weather');
 //})->name('weather');
 >>>>>>> parent of c699c5c... 1.0.6
+=======
+//Route::get('/clima', function () {
+//    return view('weather');
+//})->name('weather');
+>>>>>>> parent of 9e129d1... 1.0.7
 
 Route::get('/sobre', function () {
     return view('about');
@@ -34,10 +40,15 @@ Route::get('/search', function () {
 })->name('search');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Route::get('/clima/{city}', 'APIController');
 
 >>>>>>> parent of c699c5c... 1.0.6
+=======
+Route::get('/', 'SearchController@searchByIp')->name('welcome');
+
+>>>>>>> parent of 9e129d1... 1.0.7
 Route::get('/climaID/{id}', 'SearchController@searchById')->name("searchById");
 
 Route::post('/clima', 'SearchController@searchByCity')->name("basicSearch");

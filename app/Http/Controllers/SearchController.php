@@ -9,10 +9,14 @@ class SearchController extends Controller
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function findCoords($api, $id)
 =======
     public function shared($api, $apiKey)
 >>>>>>> parent of c699c5c... 1.0.6
+=======
+    public function findCoords($api)
+>>>>>>> parent of 9e129d1... 1.0.7
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -61,10 +65,14 @@ class SearchController extends Controller
             $apiKeyWheater = "05413c5fd1ac43b1e7174f2f0ef85b18";
             $apiWeather = "api.openweathermap.org/data/2.5/weather?id=" . $id . "&units=metric&appid=" . $apiKeyWheater;
 <<<<<<< HEAD
+<<<<<<< HEAD
             $response = $this->findCoords($apiWeather, $id);
 =======
             $response = $this->shared($apiWeather, $apiKeyWheater);
 >>>>>>> parent of c699c5c... 1.0.6
+=======
+            $response = $this->findCoords($apiWeather);
+>>>>>>> parent of 9e129d1... 1.0.7
             return view('weather', ['data' => json_decode($response[0]), 'city' => $response[1]]);
         }
         catch (\Exception $e) {
@@ -74,6 +82,7 @@ class SearchController extends Controller
 
     public function advancedSearch(Request $request)
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
     var_dump(\cache()->get("a"));
         $city = \cache()->remember("a", 60*10, function () {
@@ -105,17 +114,25 @@ class SearchController extends Controller
                 if (!in_array($array[$i]->name, $target)) {
                    $target[] = $array[$i];
 >>>>>>> parent of c699c5c... 1.0.6
+=======
+        $list = env("JSON_LIST");
+        $strJsonFileContents = file_get_contents($list);
+        $array = json_decode($strJsonFileContents);
+        $target = array();
+        for ($i = 0; $i < sizeof($array); $i++){
+            if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords($request->search)))){
+                if (!in_array($array[$i]->name, $target)) {
+                   $target[] = $array[$i];
+>>>>>>> parent of 9e129d1... 1.0.7
                 }
             }
-            return $target;
-        });
-        if (!empty($city)){
-            return view('search', ['data' => $city]);
+        }
+        if (!empty($target)){
+            return view('search', ['data' => $target]);
         }
         else{
             return view('error');
         }
-
     }
     public function tirarAcentos($string){
         $string =  preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(ç)/","/(Ç)/"),explode(" ","a A e E i I o O u U n N c C"),$string);
