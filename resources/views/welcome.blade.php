@@ -4,7 +4,7 @@
 
 
     <div id="switchSearch">
-        <button type="button" class="btn btn-p rimary" onclick="advancedSearch()" id="zipButton">Avançada</button>
+        <button type="button" class="btn btn-primary" onclick="advancedSearch()" id="zipButton">Avançada</button>
         <button type="button" class="btn btn-outline-primary" onclick="basicSearch()" id="cityButton">Rápida</button>
         <h2 id="warning">Cuidado! A pesquisa rápida pode levar a resultados errados</h2>
     </div>
@@ -31,8 +31,8 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-                    <h4 style="text-align: center">O clima na sua cidade:</h4>
                     <div class="infoWeather weatherHome">
+                        <h4>O clima na sua cidade:</h4>
                         <h1><?=intVal($data->daily[0]->temp->day)?>ºc</h1>
                         <h2><?=$data->daily[0]->weather[0]->description?> em <?=$city?></h2>
                         <h2>Sensação térmica: <?=intVal($data->daily[0]->feels_like->day)?>ºc</h2>

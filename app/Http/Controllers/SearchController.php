@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Http\Request;
+use App\Helpers\SystemHelper;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public function findCoords($api, $id)
-=======
-    public function shared($api, $apiKey)
->>>>>>> parent of c699c5c... 1.0.6
-=======
     public function findCoords($api)
->>>>>>> parent of 9e129d1... 1.0.7
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -31,7 +25,14 @@ class SearchController extends Controller
         $lat = $response->coord->lat;
         $lon = $response->coord->lon;
         $city = $response->name;
-        $apiWeather = "api.openweathermap.org/data/2.5/onecall?lat=" . $lat ."&lon=" . $lon ."&lang=pt_br&exclude=hourly&units=metric&appid=" . $apiKey;
+        $array = $this->findForecastCity($lat, $lon, $city);
+        return $array;
+    }
+
+    //pega dados de previsão a partir de latitude e longitude
+    public function findForecastCity($lat, $lon, $city = null)
+    {
+        $apiWeather = "api.openweathermap.org/data/2.5/onecall?lat=" . $lat . "&lon=" . $lon . "&lang=pt_br&exclude=hourly&units=metric&appid=" . env("API_OPEN_WEATHER");
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -44,48 +45,62 @@ class SearchController extends Controller
         return array($response, $city);
     }
 
+
+    //Pega dados de previsão a partir do nome da cidade
     public function searchByCity(Request $request)
     {
-        try{
+        try {
             $city = $request->search;
-            $apiKeyWheater = "05413c5fd1ac43b1e7174f2f0ef85b18";
+            $apiKeyWheater = env("API_OPEN_WEATHER");
             $apiWeather = "api.openweathermap.org/data/2.5/weather?q=" . $city . "&units=metric&appid=" . $apiKeyWheater;
-            $response = $this->shared($apiWeather, $apiKeyWheater);
-            return view('weather', ['data' => json_decode($response[0]), 'city' => $response[1]]);
-        }
-        catch (\Exception $e) {
+            $response = $this->findCoords($apiWeather);
+
+            if ($response[1] ?? false) {
+                return view('weather', ['data' => json_decode($response[0]), 'city' => $response[1]]);
+            }
+
+            return $this->searchCities($city);
+        } catch (\Exception $e) {
             return view('error');
         }
     }
+
 
     public function searchById(Request $request)
     {
-        try{
-            $id = $request->id;
-            $apiKeyWheater = "05413c5fd1ac43b1e7174f2f0ef85b18";
-            $apiWeather = "api.openweathermap.org/data/2.5/weather?id=" . $id . "&units=metric&appid=" . $apiKeyWheater;
-<<<<<<< HEAD
-<<<<<<< HEAD
-            $response = $this->findCoords($apiWeather, $id);
-=======
-            $response = $this->shared($apiWeather, $apiKeyWheater);
->>>>>>> parent of c699c5c... 1.0.6
-=======
-            $response = $this->findCoords($apiWeather);
->>>>>>> parent of 9e129d1... 1.0.7
-            return view('weather', ['data' => json_decode($response[0]), 'city' => $response[1]]);
-        }
-        catch (\Exception $e) {
+        $key = "key" . $request->id;
+        try {
+            $cache = \cache()->remember($key, 60 * 10, function () use ($request) {
+                $id = $request->id;
+                $apiKeyWheater = env("API_OPEN_WEATHER");
+                $apiWeather = "api.openweathermap.org/data/2.5/weather?id=" . $id . "&units=metric&appid=" . $apiKeyWheater;
+                $response = $this->findCoords($apiWeather);
+                return $response;
+            });
+        } catch (\Exception $e) {
             return view('error');
         }
+
+        return view('weather', ['data' => json_decode($cache[0]), 'city' => $cache[1]]);
     }
+
+    public function searchByIp()
+    {
+        $ipInfo = geoip($ip = "187.22.132.146");
+        $key = $ipInfo->city . $ipInfo->state;
+        $cache = \cache()->remember($key, 60*10, function () use ($ipInfo){
+            $data = $this->findForecastCity($ipInfo->lat, $ipInfo->lon, $ipInfo->city);
+            return $data;
+        });
+        return view('welcome', ['data' => json_decode($cache[0]), 'city' => $cache[1]]);
+    }
+
 
     public function advancedSearch(Request $request)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    var_dump(\cache()->get("a"));
-        $city = \cache()->remember("a", 60*10, function () {
+        $request->search = SystemHelper::tirarAcentos($request->search);
+        $key = "key" . (strtolower($request->search));
+        $cache = \cache()->remember($key, 60*60*24*7, function () use ($request){
             $apiWeather = env("JSON_LIST");
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -99,45 +114,20 @@ class SearchController extends Controller
             $array = json_decode($response);
             $target = array();
             for ($i = 0; $i < sizeof($array); $i++){
-                if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords("Guarulhos")))){
+                if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords($request->search)))){
                     if (!in_array($array[$i]->name, $target)) {
                         $target[] = $array[$i];
                     }
-=======
-        $list = "http://localhost/Momento-Clima/public/city.list.json";
-        $strJsonFileContents = file_get_contents($list);
-        $array = json_decode($strJsonFileContents);
-        $target = array();
-        $a = ucwords($request->search);
-        for ($i = 0; $i < sizeof($array); $i++){
-            if ($array[$i]->name == iconv('UTF-8', 'ASCII//TRANSLIT', $a)){
-                if (!in_array($array[$i]->name, $target)) {
-                   $target[] = $array[$i];
->>>>>>> parent of c699c5c... 1.0.6
-=======
-        $list = env("JSON_LIST");
-        $strJsonFileContents = file_get_contents($list);
-        $array = json_decode($strJsonFileContents);
-        $target = array();
-        for ($i = 0; $i < sizeof($array); $i++){
-            if (SystemHelper::tirarAcentos($array[$i]->name) == (SystemHelper::tirarAcentos(ucwords($request->search)))){
-                if (!in_array($array[$i]->name, $target)) {
-                   $target[] = $array[$i];
->>>>>>> parent of 9e129d1... 1.0.7
                 }
             }
-        }
-        if (!empty($target)){
-            return view('search', ['data' => $target]);
+            return $target;
+        });
+        if (!empty($cache)){
+            return view('search', ['data' => $cache]);
         }
         else{
             return view('error');
         }
-    }
-    public function tirarAcentos($string){
-        $string =  preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(ç)/","/(Ç)/"),explode(" ","a A e E i I o O u U n N c C"),$string);
-        $char = array(' & ', 'ª ', '  (', ') ', '(', ')', ' - ', ' / ', ' /', '/ ', '/', ' | ', ' |', '| ', ' | ', '|', '_', '.', ' ');
-        return strtolower(str_replace($char, '-', $string));
 
     }
 
