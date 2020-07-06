@@ -12,6 +12,15 @@ Momento Clima é um projeto pessoal de um website focado em trazer a previsão d
 - **[JavaScript]**
 - **[Bootstrap]**
 
+## Features
+- Descobrir a cidade do usuário via IP.
+- Dark Mode.
+- Uso do cachê para diminuir tempo e requisições.
+- Uso de API.
+- Site responsívo.
+- Sistema de search.
+- Pesquisas em JSON.
+
 ## Screenshots
 #### Light Mode
 ![Screenshot](screenshots/d.png) 
