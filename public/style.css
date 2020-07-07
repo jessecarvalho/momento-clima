@@ -237,6 +237,17 @@ a:link{
     color: red !important;
 }
 
+/*
+ERROR PAGE
+ */
+
+#error{
+    color: white;
+    width: 75%;
+    margin: 10% auto;
+}
+
+
 
 /*
 **

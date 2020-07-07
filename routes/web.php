@@ -33,3 +33,4 @@ Route::post('/clima', 'SearchController@searchByCity')->name("basicSearch");
 
 Route::post('/climaZip', 'SearchController@advancedSearch')->name("advancedSearch");
 
+
